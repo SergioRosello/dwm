@@ -71,7 +71,7 @@ static const char *incBrightness[] = { "xbacklight", "-inc", "10", NULL};
 static const char *decBrightness[] = { "xbacklight", "-dec", "10", NULL};
 
 // Configuration commands for screenshot program
-//static const char *screenshot = {"flameshot", "gui", NULL}
+static const char *screenshot[] = {"flameshot", "gui", NULL};
 
 
 static Key keys[] = {
@@ -99,12 +99,13 @@ static Key keys[] = {
     {MODKEY, XK_period, focusmon, {.i = +1}},
     {MODKEY | ShiftMask, XK_comma, tagmon, {.i = -1}},
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
+    {0 , XK_Insert, spawn, {.v = screenshot}},
     {0 , XF86XK_AudioLowerVolume, spawn, {.v = lowerVol}},
     {0 , XF86XK_AudioRaiseVolume, spawn, {.v = raiseVol}},
     {0 , XF86XK_AudioMute, spawn, {.v = muteVol}},
     {0 , XF86XK_AudioMicMute, spawn, {.v = muteMic}},
-    {0 , XF86XK_KbdBrightnessUp, spawn, {.v = incBrightness}},
-    {0 , XF86XK_KbdBrightnessDown, spawn, {.v = decBrightness}},
+    {0 , XF86XK_MonBrightnessUp, spawn, {.v = incBrightness}},
+    {0 , XF86XK_MonBrightnessDown, spawn, {.v = decBrightness}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
