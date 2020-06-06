@@ -46,6 +46,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod1Mask
+#define SUPER Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -65,6 +66,10 @@ static const char *raiseVol[] = { "amixer", "-q", "sset", "Master", "5%+", NULL}
 static const char *lowerVol[] = { "amixer", "-q", "sset", "Master", "5%-", NULL};
 static const char *muteVol[] = { "amixer", "-q", "sset", "Master", "toggle", NULL};
 static const char *muteMic[] = { "amixer", "set", "Capture", "toggle", NULL};
+
+// Selects a display configuration from available ones
+static const char *selectDisplay[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/selectDisplay", NULL};
+
 
 // Configuration commands for screen brightness
 static const char *incBrightness[] = { "xbacklight", "-inc", "10", NULL};
@@ -106,6 +111,7 @@ static Key keys[] = {
     {0 , XF86XK_AudioMicMute, spawn, {.v = muteMic}},
     {0 , XF86XK_MonBrightnessUp, spawn, {.v = incBrightness}},
     {0 , XF86XK_MonBrightnessDown, spawn, {.v = decBrightness}},
+    {SUPER, XK_p, spawn, {.v = selectDisplay}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
