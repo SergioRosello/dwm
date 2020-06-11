@@ -30,9 +30,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class               instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",              NULL,       NULL,       0,            1,           -1 },
+	{ "TelegramDesktop",   NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",           NULL,       NULL,       1,            0,           -1 },
 };
 
 /* layout(s) */
@@ -65,10 +66,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 // Configuration commands for multimedia audio 
-static const char *raiseVol[] = { "amixer", "-q", "sset", "Master", "5%+", NULL};
-static const char *lowerVol[] = { "amixer", "-q", "sset", "Master", "5%-", NULL};
-static const char *muteVol[] = { "amixer", "-q", "sset", "Master", "toggle", NULL};
-static const char *muteMic[] = { "amixer", "set", "Capture", "toggle", NULL};
+static const char *raiseVol[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/updateVolume", "+", NULL};
+static const char *lowerVol[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/updateVolume", "-", NULL};
+static const char *muteVol[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/updateVolume", "s", NULL};
+static const char *muteMic[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/updateVolume", "m", NULL};
 
 // Selects a display configuration from available ones
 static const char *selectDisplay[] = { "/bin/bash", "/home/sergio/Documents/Code/Scripts/selectDisplay", NULL};
@@ -111,7 +112,7 @@ static Key keys[] = {
     {0 , XF86XK_AudioLowerVolume, spawn, {.v = lowerVol}},
     {0 , XF86XK_AudioRaiseVolume, spawn, {.v = raiseVol}},
     {0 , XF86XK_AudioMute, spawn, {.v = muteVol}},
-    {0 , XF86XK_AudioMicMute, spawn, {.v = muteMic}},
+    {MODKEY, XF86XK_AudioMute, spawn, {.v = muteMic}},
     {0 , XF86XK_MonBrightnessUp, spawn, {.v = incBrightness}},
     {0 , XF86XK_MonBrightnessDown, spawn, {.v = decBrightness}},
     {SUPER, XK_p, spawn, {.v = selectDisplay}},
